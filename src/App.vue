@@ -1,33 +1,17 @@
 <template>
-  <p>Space left: {{ roomLeft }} out of {{ capacity }}</p>
-  <ul>
-    <li v-for="(name, index) of attending" :key="index">
-      {{ name }}
-    </li>
-  </ul>
-  <button @click="incrementCapacity">Increase Capacity</button>
+  <RefsAndComputed />
+  <hr />
+  <Reactive />
+  <hr />
+  <ToRefs />
 </template>
 
 <script>
-import { ref, computed } from "vue";
+import RefsAndComputed from "./topics/refs-and-computed";
+import Reactive from "./topics/reactive";
+import ToRefs from "./topics/to-refs";
 export default {
   name: "App",
-  setup() {
-    const capacity = ref(3);
-    const attending = ref(["alok", "mihir"]);
-
-    const incrementCapacity = () => capacity.value++;
-
-    const roomLeft = computed(() => {
-      return capacity.value - attending.value.length;
-    });
-
-    return {
-      capacity,
-      incrementCapacity,
-      roomLeft,
-      attending,
-    };
-  },
+  components: { RefsAndComputed, Reactive, ToRefs },
 };
 </script>
